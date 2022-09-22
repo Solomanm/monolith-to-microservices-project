@@ -15,9 +15,15 @@ before_script:
 
 script:
   - docker --version # print the version for logging
-  - docker build -t udagram-api-feed
+  - docker build -t udagram-api-feed ./udagram-api-feed
+  - docker build -t udagram-api-user ./udagran-api-user
+  - docker build -t udagram-frontend ./udagram-frontend
   - docker tag udagram-api-feed solomanm/udagram-api-feed:v1
+  - docker tag udagram-api-user solomanm/udagram-api-user:v1
+  - docker tag udagram-frontend solomanm/udagram-frontend:v1
   
 after_success:
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
   - docker push solomanm/udagram-api-feed:v1
+  - docker push solomanm/udagram-api-user:v1
+  - docker push solomanm/udagram-frontend:v1
