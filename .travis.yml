@@ -20,14 +20,14 @@ script:
   - docker build -t udagram-frontend ./udagram-frontend
   - docker build -t udagram-reverseproxy ./udagram-reverseproxy
   
-  - docker tag udagram-api-feed solomanm/udagram-api-feed:v1
-  - docker tag udagram-api-user solomanm/udagram-api-user:v1
-  - docker tag udagram-frontend solomanm/udagram-frontend:v1
-  - docker tag udagram-reverseproxy solomanm/reverseproxy:v1
+  - docker tag udagram-api-feed solomanm/udagram-api-feed:v2
+  - docker tag udagram-api-user solomanm/udagram-api-user:v2
+  - docker tag udagram-frontend solomanm/udagram-frontend:v2
+  - docker tag udagram-reverseproxy solomanm/reverseproxy:v2
   
 after_success:
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-  - docker push solomanm/udagram-api-feed:v1
-  - docker push solomanm/udagram-api-user:v1
-  - docker push solomanm/udagram-frontend:v1
-  - docker push solomanm/reverseproxy:v1
+  - docker push solomanm/udagram-api-feed:v2
+  - docker push solomanm/udagram-api-user:v2
+  - docker push solomanm/udagram-frontend:v2
+  - docker push solomanm/reverseproxy:v2
