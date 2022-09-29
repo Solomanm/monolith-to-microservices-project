@@ -2,20 +2,30 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: backend-user
+  labels:
+    app: backend-user
 spec:
+  replicas: 2
   selector:
     matchLabels:
-      run: backend-user
-  replicas: 2
+      app: backend-user
   template:
     metadata:
       labels:
-        run: backend-user
+        app: backend-user
     spec:
       containers:
-      - name: udagram-api-feed
+      - name: backend-api-user
         image: docker.io/solomanm/udagram-api-user:v1
-        imagePullPolicy: Always
+        env:
+          - name: POSTGRES_USERNAME
+            value: "database1"
+          - name: POSTGRES_PASSWORD
+            value: "Database1"
+          - name: POSTGRES_HOST
+            value: "database1.c3h1fvhccq33.us-east-1.rds.amazonaws.com"
+          - name : POSTGRES_DB
+            value: "postgres"
         ports:
         - containerPort: 8080
         resources:
