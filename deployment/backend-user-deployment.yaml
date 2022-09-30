@@ -23,7 +23,7 @@ spec:
           - name: POSTGRES_PASSWORD
             value: "Database1"
           - name: POSTGRES_HOST
-            value: "database1.c3h1fvhccq33.us-east-1.rds.amazonaws.com"
+            value: "database1.c1jqzsr8uemu.us-east-1.rds.amazonaws.com"
           - name : POSTGRES_DB
             value: "postgres"
         ports:
@@ -47,5 +47,7 @@ spec:
   - name: "8080"
     port: 8080
     targetPort: 8080
+    protocol: TCP
+  type: ClusterIP
   selector:
-    service: backend-user
+    app: backend-user
